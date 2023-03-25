@@ -20,3 +20,5 @@ print(int2('1010101'))
 # 也可以使用偏函数简化调用
 int2p=functools.partial(int,base=2)
 print(int2p('1010101'))
+int16=functools.partial(int,base=16)
+print(int16('12345E'))
