@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# coding=utf8
+# coding=utf-8
 import sys
 
 # 在Python中，一个.py文件就称之为一个模块（Module）

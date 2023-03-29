@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# coding=utf8
+# coding=utf-8
 
 # 以student类为例，(object)表示从哪个类继承下来
 class Student(object):
@@ -18,6 +18,14 @@ class Student(object):
     def print_score(self):
         print('%s: %s' % (self.name,self.score))
 
+    def get_grade(self):
+        if self.score >= 90:
+            return 'A'
+        elif self.score >= 60:
+            return 'B'
+        else:
+            return 'C'
+
 s_a = Student('a',97)
 s_b = Student('b',96)
 
@@ -29,3 +37,5 @@ s_c = Student('d',94)
 s_c.name = 'c'
 s_c.score = 95
 s_c.print_score()
+
+print(s_c.get_grade())

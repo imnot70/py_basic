@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# coding=utf8
+# coding=utf-8
 import functools
 # 通过设定参数的默认值，可以降低函数调用的难度。而偏函数也可以做到这一点
 # 以int函数为例
