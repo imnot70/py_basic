@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding=utf-8
 
-import os,time,random
+import os,time,random,subprocess
 from multiprocessing import Process,Pool
 
 # python的os模块封装了常见的系统调用，其中包括用于创建子进程的fork
@@ -46,8 +46,10 @@ def long_time_task(name):
 
 if '__main__' == __name__:
     print('Parent process %s' % os.getpid())
+    # 进程池，参数为进程池容量
     p = Pool(4)
     for i in range(5):
+        # 添加进程
         p.apply_async(long_time_task,args=(i,))
     p.close()
     p.join()
