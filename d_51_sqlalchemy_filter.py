@@ -4,12 +4,13 @@
 from sqlalchemy import Column, String, create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-import inspect,mysql.connector
 
 CONN_URL='mysql+mysqlconnector://root:root@localhost:3306/test'
 
-# 创建对象的基类:
 Base = declarative_base()
+engine = create_engine(CONN_URL)
+# 创建 DBSession 类型:
+DBSession = sessionmaker(bind=engine)
 
 class User(Base):
     # 表的名字:
@@ -18,16 +19,13 @@ class User(Base):
     id = Column(String(20), primary_key=True)
     name = Column(String(20))
 
-engine = create_engine(CONN_URL)
-# 创建 DBSession 类型:
-DBSession = sessionmaker(bind=engine)
-
+# 创建 Session:
 session = DBSession()
-# 创建新 User 对象:
-new_user = User(id='5', name='Bob')
-session.add(new_user)
-# 提交即保存到数据库:
-session.commit()
-# 关闭 session:
+# 创建 Query 查询，filter 是 where 条件，
+# 最后调用 one()返回唯一行，如果调用 all()则返回所有行:
+user = session.query(User).filter(User.id=='5').one()
+# 打印类型和对象的 name 属性:
+print('type:', type(user))
+print('name:', user.name)
+# 关闭 Session:
 session.close()
-
